@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+ <meta charset="utf-8" >
+ <meta name="keywords" content="" >
+ <meta name="descript" content="" >
+ <title>js_dom_childNodes</title>
+ 
+ <script>
+
+ /*
+	元素.childNodes : 只读 属性 子节点列表集合
+		标准下 ：包含了文本和元素类型的节点，也会包含非法嵌套的子节点
+		非标准下 ：只包含了元素类型的节点,在IE7以下不会包含非法嵌套的子节点
+		childNodes只包含一级子类节点，不包含孙类节点
+
+	元素.children : 只读 属性 子节点列表集合
+		标准下 ：只包含元素类型和非法嵌套的子节点
+		非标准下 ：只包含元素类型
+
+
+
+	DOM类型的节点有很多 ：12种 （文本节点--3、元素节点--1、属性节点--2）
+
+	元素.nodeType : 只读 属性 当前元素的节点类型
+
+	元素.attributes : 只读 属性 属性列表集合
+
+ 
+ */
+ window.onload = function(){
+ 	var oUl = document.getElementById("ul1");
+ 	alert( oUl.childNodes.length ); //获得元素子节点的长度 -- 标准下为9，非标准下为4
+	alert( oUl.children.length ); //获得元素子节点的长度 -- 标准下为5，非标准下为4（不能识别文本类型节点）
+
+	alert( oUl.nodeType );
+	alert( oUl.childNodes[0].nodeType ); //获得元素子节点的节点类型 -- 3，文本类型节点
+	alert( oUl.childNodes[1].nodeType ); //获得元素子节点的节点类型 -- 1，元素类型节点
+
+	alert( oUl.attributes.length ); //获得元素属性的个数 -- 1
+	alert( oUl.attributes[0].name ); //获得元素属性的名称 -- id
+	alert ( oUl.attributes[1].value ); //获得元素属性的值 -- border:1px solid red;
+	alert( oUl.attributes[0].nodeType ); //获得元素属性的节点类型 -- 2 （属性节点）
+
+	for(var i ; i<oUl.childNodes.length; i++){
+
+		if(oUl.childNodes[i] == 1 ){
+			oUl.childNodes[i].style.background = "red";
+		}
+		
+		/* 
+			在非标准下，由于childNodes[0]为文本类型，没有相应background类型 
+		*/
+	}
+	
+ }
+ 
+ 
+ </script>
+ 
+ <!-- childNodes.length在不同浏览器中长度不同，
+	  IE浏览器中只能识别元素节点，普通浏览器中可以识别文档节点（包括换行符--空白文本）及元素节点，
+	  ul.childNodes[0].nodeType--3,为text-node文本类型。
+	  ul.childNodes[1].nodeType--1,为element-node元素节点。 attribute-node为属性节点 -- 2。
+ -->
+ </head>
+
+<body>
+	<ul id="ul1" style="border:1px solid red;">
+		<li>1111<span>span</span></li>
+		<li>2222</li>
+		<li>3333</li>
+		<li>4444</li>
+		<p>p<p> <!-- 非法嵌套 -->
+	</ul>
+</body>
+</html>

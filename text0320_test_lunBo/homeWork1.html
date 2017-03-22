@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="utf-8" >
+  <meta name="keywords" content="" >
+  <meta name="descript" content="" >
+  <title>homeWork1</title>
+ </head>
+
+ <style>
+  p{ margin:0;}
+  body{ text-align:center;}
+  #msg{ margin:10px auto;}
+  #content{ width:400px; height:400px; margin:0 auto; border:5px #ccc solid; background:url(img/onload.png) no-repeat 100px 100px; position:relative;}
+  #content a { width:40px; height:40px; border:5px #ccc solid; position:absolute; top:188px; font-size:30px; font-weight:bold; text-align:center; line-height:35px; text-decoration:none; background:#000; color:#fff; filter:alpha(opacity:40); opacity:0.4;}
+  #content a:hover{ filter:alpha(opacity:80); opacity:0.8;}
+  #prev { left:10px;}
+  #next { right:10px;}
+
+  #span,#text{ position:absolute; width:400px; height:30px; background:#000; filter:alpha(opacity:60); opacity:0.6; color:#fff; text-align:center; line-height:30px; }
+  #span { top:0;}
+  #text { bottom:0; margin:0;}
+  #img1 { width:400px; height:400px; }
+ </style>
+
+ <script>
+  window.onload = function(){
+    var oPrev = document.getElementById("prev");
+    var oNext = document.getElementById("next");
+    var oSpan = document.getElementById("span");
+    var oText = document.getElementById("text");
+    var oImg = document.getElementById("img1");
+	var oBt1 = document.getElementById("bt1");
+	var oBt2 = document.getElementById("bt2");
+	var oMsg = document.getElementById("msg");
+    
+	var arrImg = ['img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg','img/5.jpg'];
+	var arrText = ['tu1','tu2','tu3','tu4','tu5'];
+	var arrMsg = ['图片可从最后一张跳转到第一张循环切换','图片只能到最后一张\或只能到第一张切换'];
+	var num = 0;
+	var flag = true;
+    //var numTab1 = 0;
+	//var numTab2 = arrImg.length - 1;
+	var alert1 = "已经是最后一张了！";
+	var alert2 = "已经是第一张了！";
+
+	function fnTab(){
+	 oSpan.innerHTML = num + 1 + '/' +arrImg.length;
+	 oText.innerHTML = arrText[num];
+	 oImg.src = arrImg[num];
+	}
+	fnTab();
+    
+	oMsg.innerHTML = arrMsg[0];
+	oBt1.onclick = function(){
+	 //numTab1 = 0;
+	 //numTab2 = arrImg.length - 1;
+	 //alert1 = "";
+	 //alert2 = "";
+	 flag = true;
+	 oMsg.innerHTML = arrMsg[0];
+
+	}
+	oBt2.onclick = function(){
+	 //numTab1 = arrImg.length - 1;
+	 //numTab2 = 0;
+	 //alert1 = "已经是最后一张了！";
+	 //alert2 = "已经是第一张了！";
+	 flag = false;
+	 oMsg.innerHTML = arrMsg[1];
+	}
+
+	oNext.onclick = function(){
+	 num ++;
+	 if( num == arrImg.length){
+	   if(flag){
+		num = 0;
+	   }else{
+	    alert(alert1);
+		num = arrImg.length - 1;
+	   }
+	  
+	 }
+	 fnTab();
+	}
+	oPrev.onclick = function(){
+	 num --;
+	 if(num == -1){
+		 if(flag){
+		  num = arrImg.length - 1;
+		 }else{
+		  alert(alert2);
+		  num = 0;
+		 }
+	 }
+	 fnTab();
+	}
+  
+  }
+
+
+ </script>
+ <body>
+
+  <button id="bt1">循环切换</button>
+  <button id="bt2">顺序切换</button>
+  <p id="msg">11</p>
+
+  <div id="content">
+   <a id="prev" href="javascript:;"><</a>
+   <a id="next" href="javascript:;">></a>
+   <span id="span">图片正在加载中...</span>
+   <p id="text">文字正在加载中...</p>
+   <img id="img1" alt="图片"/>
+  </div>
+
+ </body>
+</html>

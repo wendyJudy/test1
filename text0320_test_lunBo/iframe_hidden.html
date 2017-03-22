@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+
+  <style>
+	/* #ft1{ color:gray;} */
+	#ft2{ color:gray;}
+
+  </style>
+
+  <script>
+  window.onload = function(){
+  	var oBf = document.getElementById('bodyframe');
+  	var oFb = document.getElementById('heads');
+    var oFt1 = document.getElementById('ft1');
+  	var oFt2 = document.getElementById('ft2');
+
+	oFt1.onclick = function(){
+  	 oFb.style.display = "block";  
+  	}
+  	oFt2.onclick = function(){
+  	 oFb.style.display = "none"; 
+  	}
+	
+  }
+  	
+  	
+  
+  </script>
+
+ </head>
+ <body>
+  
+ <div id="bodyframe" style="VISIBILITY:show">  
+	 <IFRAME frameBorder=1 id="heads" src="homeWork1.html" style="HEIGHT:500px; LEFT: 220px; POSITION: absolute; TOP: 200px; WIDTH: 500px">  
+	 </IFRAME>  
+</div>  
+<div id="ft1" style="background-color: red; cursor: pointer; height: 22; left: 300; position: absolute; top:110px; "> 
+	<font  color="#ffffff">显示iFrame</font>  
+</div> 
+
+<div id="ft2" style="background-color: red; cursor: pointer; height: 22; left: 300; position: absolute; top:0px; "> 
+	<font  color="#ffffff">隐藏iFrame</font>  
+</div> 
+ 
+
+ </body>
+</html>

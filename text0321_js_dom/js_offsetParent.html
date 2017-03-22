@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+	<style>
+		div{ padding:40px 50px;}
+		#div1{ background:red; }
+		#div2{ background:blue; zoom:1; }
+		#div3{ background:green;}
+	</style>
+
+	<script>
+		window.onload = function(){
+			var oDiv3 = document.getElementById("div3");
+
+			/*
+				元素.offsetParent : 只读 属性 离当前元素最近的一个有定位属性的第一个父节点
+					如果没有定位父级，默认是body
+					ie7以下如果当前元素没有定位默认是body,如果有默认是html
+					ie7以下如果当前某个元素触发了layout这个特性，则offsetParent将会指向触发layout属性的节点上
+			*/
+
+			alert(oDiv3.offsetParent.id); // 获取当前元素有定位父级的id值 -- div2/div1
+			alert(oDiv3.offsetParent.tagName); // 获取当前元素有定位父级的标签名 --html/body
+
+			//layout --ie浏览器中的特性，用来清除浮动 ,需要使用 zoom:1; 触发layout属性
+
+			alert(document.getElementById("div2").currentStyle.hasLayout);
+		}
+	</script>
+
+ </head>
+ <body>
+  <div id="div1">
+	<div id="div2">
+		<div id="div3"></div>
+	</div>
+  </div>
+ </body>
+</html>

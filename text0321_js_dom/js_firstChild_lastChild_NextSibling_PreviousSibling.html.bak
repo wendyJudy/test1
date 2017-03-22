@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+	<script>
+		window.onload = function(){
+			var oUl = document.getElementById('ul1');
+	
+			/*
+				元素.firstChild 只读 属性 获取元素的第一个子节点
+					标准下：会包含文本类型节点
+					非标准下：只包含非本文类型节点，元素节点
+	
+				元素.firstElementChild 只读 属性 获取标准下的第一个元素类型节点
+			*/
+	
+			alert( oUl.firstChild );
+			alert( oUl.firstElementChild );
+			
+			/* 处理标准非标准下兼容问题 */
+			if( oUl.firstElementChild ){
+				oUl.firstElementChild.style.background = "color";
+			}else{
+				oUl.firstChild.style.background = "red";
+			}
+			/* 
+				当前元素没有子节点时，使用以上会出现兼容问题
+				alert(oUl.firstElementChild);--在IE9下为null,
+				alert(oUl.firstChild);--在IE9下获取的为文本类型节点
+			*/
+			var oFirst = oUl.firstChild || oUl.firstElementChild;
+			if( oFirst ){
+				oFirst.style.background = "red";
+			}else{
+				alert( "没有子节点可以设置" );
+			}
+			/* 解决兼容性问题，建议使用 元素.children[0] 获取的为标准下第一个元素节点 */
+			if( oUl.children[0]){
+				oUl.children[0].style.background = "red";
+			}else{
+				alert("没有字节点可以设置");
+			}
+			/*
+				元素.lastChild : 只读 属性 获取元素的最后一个字元素
+				元素.nextSibling ||元素.nextElementSibling : 下一个兄弟节点 
+			*/
+			var oLChild = oUl.lastChild || oUl.lastElementChild;
+			oLChild.style.background = "yellow";
+			var oNSibling = oFirst.nextSibling || oFirst.nextElementSibling;
+			oNSibling.style.background = "blue";
+
+
+		}
+	</script>
+
+ </head>
+ <body>
+  <ul id="ul1" style="border:1px solid red;">
+	<!-- <li>111<span>span</span></li>
+	<li>222</li>
+	<li>333</li>
+	<li>444</li>
+	<p>p</p> -->
+  </ul>
+ </body>
+</html>
